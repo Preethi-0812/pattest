@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Node.js
+      - curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+      - yum install -y nodejs
+  pre_build:
+    commands:
+      - echo Installing dependencies
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run start &
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
